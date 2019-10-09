@@ -1,0 +1,25 @@
+header.header
+  .row
+    .col
+    nav.navbar.navbar-expand-lg.navbar-light.bg-dark
+    img.header-logo(src="/images/woc.bmp" alt="WildCat Oil Logo")
+ 
+    .col
+
+      .collapse.navbar-collapse(id='navbarSupportedContent')
+        ul.navbar-nav.float-right
+          li.nav-item.active
+            a.nav-link(href='/Dashboard') Home
+          li.nav-item
+            a.nav-link(href='/HSE Standards & Forms') 
+          li.nav-item
+            a.nav-link(href='/Training') Parking
+          li.nav-item
+            a.nav-link(href='/About Us') Places
+        ul.navbar-nav.float-right
+          li.nav-item
+            a.nav-link(href='/login') Login
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(id='navbarDropdownMenuLink', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Accounts
+            .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
+              a.dropdown-item(href='#') Settings

@@ -1,0 +1,47 @@
+{
+  "name": "wildcatoil",
+  "version": "1.0.0",
+  "description": "WildCat Oil Safety Application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dgr8ninja/wildcatoil.git"
+  },
+  "keywords": [
+    "WildCat",
+    "Oil",
+    "Tools",
+    "WildCat",
+    "Oil",
+    "Tools",
+    "Safety",
+    "Oil",
+    "and",
+    "Gas",
+    "Oil",
+    "&",
+    "Gas",
+    "Oil",
+    "and",
+    "Gas",
+    "Safety",
+    "Oil",
+    "&",
+    "Gas",
+    "Safety"
+  ],
+  "author": "Damon Ponder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dgr8ninja/wildcatoil/issues"
+  },
+  "homepage": "https://github.com/dgr8ninja/wildcatoil#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
+  }
+}
