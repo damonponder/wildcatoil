@@ -1,0 +1,33 @@
+extend layout
+block content
+    form.regform(method='POST' action='/registration')
+        h1.headerreg.text-center User Registration
+        // register form
+    
+        label(for='FirstName') First Name:
+        input#FirstName.form-control(type='text', placeholder='first name' name='FN')
+
+        label(for='LastName') Last Name:
+        input#LastName.form-control(type='text', placeholder='last name' name='LN')
+
+        label(for='Address') Address:
+        input#address.form-control(type='text', placeholder='address' name='address')
+
+        label(for='City') City:
+        input#City.form-control(type='text', placeholder='City' name='CN')
+
+        label(for='State') State:
+        input#State.form-control(type='text', placeholder='State' name='SN')
+
+        label(for='Zip') Zip Code:
+        input#zip.form-control(type='zip' placeholder='Zip Code' name='ZC')
+
+        label(for='title') Company Position:
+        input#CompanyPosition.form-control(type='companytitle' placeholder='Company Position' name='CP')
+
+        label(for='pw') Password:
+        input#pw.form-control(type='password' placeholder='Password' name='pw')
+
+        label(for='pw2') Password Confirmation:
+        input#CPW.form-control(type='password' placeholder='Password Confirmation' name='CPW')
+        button.btn.btn-primary(type='submit') Sign up
