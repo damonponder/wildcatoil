@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": 9634,
+    "password": 963477,
     "database": "WildCat",
     "host": "127.0.0.1",
     "dialect": "postgres",

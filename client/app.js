@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+// const bcrypt = require("bcrypt");
 const app = express();
-const port = 3000;
+const port = 3007;
 const session = require('express-session');
+const models = require('./models');
 const sequelize = require('sequelize');
 const accountRouter = require('./routes/account');
 const pgp = require('pg-promise')();
@@ -12,8 +14,8 @@ const cn = {
   host: '127.0.0.1',
   port: 5432,
   database: 'postgres',
-  user: 'dgr8ninja',
-  password: '9634'
+  user: 'postgres',
+  password: '963477'
 };
 
  const db = pgp(cn);
@@ -57,28 +59,40 @@ app.get("/", function(req, res) {
   });
 
   app.post('/registration', async function(req, res){
-    let FirstName = req.body.FN
-    let LastName = req.body.LN
-    let Address = req.body.address
-    let City = req.body.CN
-    let State = req.body.SN
-    let ZipCode = req.body.ZC
-    let CompanyPosition = req.body.CP
-    let Password = req.body.pw
-    let PasswordConfirmation = req.body.CPW
+    let FirstName = req.body.FirstName
+    let LastName = req.body.LastName
+    let Address = req.body.Address
+    let City = req.body.City
+    let State = req.body.State
+    let ZipCode = req.body.ZipCode
+    let CompanyPosition = req.body.CompanyPosition
+    let Email = req.body.Email
+    let Password = req.body.Password
+    let PasswordConfirmation = req.body.PasswordConfirmation
+    console.log(FirstName)
+    let Users = models.Users.build({
+      FirstName: FirstName,
+      LastName: LastName,
+      Address: Address,
+      City: City,
+      State: State,
+      ZipCode: ZipCode,
+      CompanyPosition: CompanyPosition,
+      Email: Email,
+      Password: Password
+    })
+    Users.save().then((regsave) => {
 
-    try {
-      await addUser(FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Password);
+      console.log(regsave)
       res.redirect('/login');
-    } catch (e) {
-      res.send(e);
-    }
-     
-  });
+    })
+  })
+    
+  
 
-function addUser(FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Password,) {
-    return db.none(`INSERT INTO public."USER" (FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`, [
-      FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Password
+function addUser(FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password,) {
+    return db.none(`INSERT INTO public."USER" (FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [
+      FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password
     ]); 
   }
   
