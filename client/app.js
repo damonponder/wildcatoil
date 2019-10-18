@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const app = express();
-const port = 3007;
+const port = 3000;
 const session = require('express-session');
 const models = require('./models');
 const sequelize = require('sequelize');
@@ -69,32 +69,40 @@ app.get("/", function(req, res) {
     let Email = req.body.Email
     let Password = req.body.Password
     let PasswordConfirmation = req.body.PasswordConfirmation
-    console.log(FirstName)
-    let Users = models.Users.build({
-      FirstName: FirstName,
-      LastName: LastName,
-      Address: Address,
-      City: City,
-      State: State,
-      ZipCode: ZipCode,
-      CompanyPosition: CompanyPosition,
-      Email: Email,
-      Password: Password
-    })
-    Users.save().then((regsave) => {
-
-      console.log(regsave)
-      res.redirect('/login');
-    })
-  })
     
-  
+    models.Users.findOne({
+      where:  {
+        Email: Email
+      }
+    }).then((Email) => {
+      if(Email) {
+        res.status(500).json({ message: 'This Email Already Exists, Please Try Another'})
+      
+    } else {
 
-function addUser(FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password,) {
-    return db.none(`INSERT INTO public."USER" (FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [
-      FirstName, LastName, Address, City, State, ZipCode, CompanyPosition, Email, Password
-    ]); 
-  }
+    bcrypt.hash(Password, 10, (error, hash) => {
+      if(!error) {
+        let Users = models.Users.build({
+          FirstName: FirstName,
+          LastName: LastName,
+          Address: Address,
+          City: City,
+          State: State,
+          ZipCode: ZipCode,
+          CompanyPosition: CompanyPosition,
+          Email: Email,
+          Password: hash
+        })
+        Users.save().then((regsave) => {
+
+          console.log(regsave)
+          res.redirect('/login');
+        })
+        }
+    })
+    }
+  })
+})
   
   app.get("/HSE", function(req, res) {
     res.render("HSE");
